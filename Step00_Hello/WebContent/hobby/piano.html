@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>/hobby/piano.html</title>
+</head>
+<body>
+	<ul>
+		<li><a href="/Step00_Hello/index.html">인덱스 페이지로 돌아가기</a></li>
+		<!-- 
+		상대 경로 index.html 로 링크를 설정하면 
+		상대 경로이기 때문에 hobby 폴더 안에서 index.html 을 찾게 된다.
+		잘못된 링크로 이동 혹은 404 발생
+		-->
+		
+		<!-- bootstrap css 링크 걸기 -->
+		<link rel="stylesheet" href="/Step00_Hello/css/bootstrap.css" />
+		
+		<!-- 상대 경로 링크 걸기 (../는 상위 경로를 가리키는 것) -->
+		<li><a href="../index.html">인덱스로 가기2</a></li>
+		
+		<br />
+		
+		<!-- 절대 경로로 kim1.png 이미지를 로딩 시켜 보세요. -->
+		<img src="/Step00_Hello/images/kim1.png" />
+		
+		<!-- 상대 경로로 kim1.png 이미지를 로딩 시켜 보세요. -->
+		<img src="../images/kim1.png" />
+	</ul>
+</body>
+</html>
+<!-- 
+	*Memo*
+	http://localhost:8888/Step00_Hello/hobby/piano.html
+	[/Step00_Hello/hobby/piano.html = /context path/WebContent안의 폴더명/html 파일명]
+	
+	주소창 관찰과 경로 테스트를 많이 해봐야 한다.
+	
+	- 절대 경로가 확실히 편하고, 오류날 가능성이 없어보인다.
+ -->

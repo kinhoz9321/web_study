@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.html</title>
+</head>
+<body>
+<div class="container">
+	<h1>나의 웹 페이지</h1>
+	
+	<!-- 상대 경로로 이미지 로딩하기 -->
+	<img src="images/kim1.png" />
+	
+	<!-- 절대 경로로 이미지 로딩하기 -->
+	<img src="/Step00_Hello/images/kim1.png" />
+	<!-- /Step00_Hello/ 최상위 경로 -->
+	
+	<ul>
+		<!-- 상대 경로 링크 -->
+		<li><a href="game.html">게임 하러가기</a></li>
+		
+		<!-- 절대 경로 링크 -->
+		<li><a href="/Step00_Hello/game.html">게임 하러가기2</a></li>
+		
+		<!-- 상대 경로 링크 -->
+		<li><a href="hobby/piano.html">피아노 치러가기</a></li>
+	</ul>
+</div>
+</body>
+</html>
+<!-- 
+	*Memo*
+	
+	[현재 index 페이지의 웹페이지 경로]
+	http://localhost:8888/Hello/index.html
+	
+	상대 경로 : 현재 경로를 기준으로 이동하는 것 (헷갈릴 소지가 있다.)
+	절대 경로 : context path(프로젝트 명)을 이용해 절대적인 경로를 기준으로 이동하는 것
+	
+	* 상대 경로보다 절대 경로를 사용하는 것이 더 확실하고 좋은 방법이다.
+	
+	* /Step00_Hello 는 context path (프로젝트 명) 이다.
+	* /Step00_Hello/ 의  '/' 는 Step00_Hello 프로젝트의 WebContent 를 가리킨다.
+	* context 경로는  / 로 구분해서 이동한다.
+	
+	[run 했을 때 일어나는 4가지 동작]
+	- run 했을 때 이클립스가 대신 해주는 작업이 무엇인가?
+	1. index.html 페이지가 속해있는 프로젝트 add
+	2. Tomcat 서버 start
+	3. 웹브라우저 launch
+	4. index.html 페이지를 요청할 수 있는 경로를 주소창에 입력
+	
+	[알아두기 !]
+	404는 해당 경로가 존재하지 않을 때 톰캣이 응답하는 것이다.
+	
+	[강사님과 해본 것]
+	1. html 파일을 만들었을 때 이동하는 연습
+	2. 상대경로와 절대경로에 대해 알기
+ -->
