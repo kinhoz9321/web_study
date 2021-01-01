@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.html</title>
+</head>
+<body>
+<div class="container">
+	<h1>인덱스 페이지 입니다.</h1>
+	<ul>
+		<!-- Servlet 만들기 연습 ("/hello"),("/ya")-->
+		<li><a href="hello">hello 요청 ("/hello")</a></li>
+		<li><a href="ya">ya 요청 ("/ya")</a></li>
+		
+		<!-- 상대 경로 링크 (/로 시작하지 않으면 상대 경로이다.) ("/time")-->
+		<li><a href="time">현재 시간 보기 ("/time")</a></li>
+		<!-- 절대 경로 링크 (어노테이션 할 때는 /time만 적는다.) -->
+		<li><a href="/Step01_Servlet/time">현재 시간 보기2 ("/time")</a></li>
+		
+		<!-- Servlet ("/sub/fortune"), (sub 폴더 -> fortune.jsp) -->
+		<li><a href="sub/fortune">오늘의 운세보기 ("/sub/fortune")</a></li>
+		<!-- jsp -->
+		<li><a href="sub/fortune.jsp">오늘의 운세보기2 (sub 폴더 -> fortune.jsp)</a></li>
+		<!-- 
+		만약 sub/fortune.html 이라고 했으면 sub 폴더를 만들어서 fortune.html 파일을 만들었어야 한다.
+		 -->
+				
+		<!-- GET 방식 전송 테스트, GET 방식 전송 예제 -->
+		<li><a href="send?msg=hello">GET 방식 전송 테스트 1 ("/send")</a></li>
+		<!-- msg=hello parameter -->
+		<li><a href="send.jsp?msg=hi">GET 방식 전송 테스트 2 (/send.jsp)</a></li>
+		<!-- msg=hi parameter -->
+		
+		<!-- 파라미터가 여러개면 &로 구분한다. -->
+		<li><a href="test/buy.jsp?num=999&type=ABC">999번 상품 구입하기</a></li>
+		<!-- num=999&type=ABC parameter -->
+	</ul>
+	
+	<h2>GET 방식 폼 전송 예제 ("/send")</h2>
+	<!-- 
+	클라이언트 웹브라우저에서 서버에 데이터를 전송할 때 사용하는 요소 
+	action="send" = ("/send")
+	-->
+	<form action="send" method="get">
+		<input type="text" name="msg" placeholder="문자열 입력"/>
+		<button type="submit">전송</button>
+		<button type="reset">취소</button>
+	</form>
+	<br />
+	<h2>GET 방식 폼 전송 예제 (/send.jsp)</h2>
+	<form action="send.jsp" method="get">
+		<input type="text" name="msg" placeholder="문자열 입력"/>
+		<button type="submit">전송2</button>
+		<button type="reset">취소</button>
+	</form>
+	<br />
+	<h2>GET 방식 폼 전송 예제 (test 폴더 -> buy.jsp)</h2>
+	<form action="test/buy.jsp" method="get">
+		<input type="text" name="num" placeholder="갯수 입력"/>
+		<input type="text" name="type" placeholder="물건"/>
+		<button type="submit">전송</button>
+		<button type="reset">취소</button>
+	</form>
+	
+	<h2>POST 방식 폼 전송 예제 ("/test/send2")</h2>
+	<form action="test/send2" method="post">
+		<input type="text" name="msg" placeholder="문자열 입력"/>
+		<button type="submit">전송3</button>
+	</form>
+	<br />
+	<h2>POST 방식 폼 전송 예제 (test 폴더 -> send2.jsp)</h2>
+	<form action="test/send2.jsp" method="post">
+		<input type="text" name="msg" placeholder="문자열 입력"/>
+		<button type="submit">전송4</button>
+	</form>
+</div>
+</body>
+</html>
+<!-- 
+GET 방식 전송 테스트와 GET 방식 폼 전송 예제는 똑같은 것이다.
+
+GET 방식 전송 테스트에서 알아야 할 점.
+링크를 눌렀을 때 요청할 정보와 간단한 정보를 같이 전달할 수 있다는 것.
+ex) <a href="send?msg=hello"> msg=hello 전달
+
+[GET 방식과 POST 방식의 차이]
+GET 방식 
+- 주소창에 정보를 달고 가는 것
+- 링크를 눌렀을 때 전송 가능
+POST 방식 
+- 정보를 몸통(body)에 달고 가는 것
+- 링크를 눌렀을 때 전송 불가능
+
+[전송 방식 4가지]
+1.GET
+2.POST
+3.PUT - 자바스크립트 가능
+4.DELETE - 자바스크립트 가능
+
+웹브라우저 (클라이언트의 입장) - 요청
+ex) 주소창 입력, 링크 누르기 등
+서블릿, jsp (서버의 입장) - 응답
+
+요청하는 컨텐츠가 항상 정적인 컨텐츠만 있는 것은 아니다.
+정적인 컨텐츠 = 존재하는 컨텐츠
+ex)
+css/bootstrap.css
+images/kim1.png
+
+[알아두기!]
+공부할 때는 8888포트를 사용
+사이트 돌릴 때는 80포트 사용
+
+원래는 사이트 하나당 프로젝트 하나라고 알아두면 된다. 원래는.
+ -->
