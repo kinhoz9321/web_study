@@ -15,6 +15,12 @@
 </head>
 <body>
 	<div class="container">
+		<button>
+			<a href="${pageContext.request.contextPath}/index.jsp">home</a>
+		</button>
+		<button>
+			<a href="${pageContext.request.contextPath}/cafe/private/insertform.jsp">새글 작성</a>
+		</button>
 		<table>
 			<thead>
 				<tr>
