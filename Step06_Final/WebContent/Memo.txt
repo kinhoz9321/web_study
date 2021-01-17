@@ -1,0 +1,44 @@
+[ 정보를 처리하고 난 후 응답하는 방법 ]
+
+1. Javascript 사용
+<script>
+	alert("로그아웃 되었습니다.");
+	location.href="${pageContext.request.contextPath}/";
+</script>
+
+[Memo]
+- 알림창이 뜨고 확인을 누르면 자동으로 대문 페이지로 가게 된다.(http://localhost:8888/Step06_Final/)
+- web.xml 의 welcome 파일 리스트 때문에
+"${pageContext.request.contextPath}/" 최상위 경로 까지만 적어줘도 
+자동으로 index.jsp 페이지가 뿌려진다.
+
+2. Java 사용
+<body>
+<%if(isSuccess){ %>
+	<p>회원 탈퇴가 완료 되었습니다.</p>
+	<a href="${pageContext.request.contextPath}/index.jsp">인덱스로 돌아가기</a>
+<%}else{ %>
+	<p>회원 탈퇴 실패</p>
+<%} %>
+</body>
+
+[Memo]
+- if문 사용. 응답 페이지가 나오고 링크를 누르면 페이지 이동하는 방식.
+
+3. Json 문자열 사용
+{"isExist":<%=isExist %>}
+
+[Memo]
+<%if(isExist){%>
+	이미 존재 하는 아이디 입니다.
+<%}else{ %>
+	사용 가능한 아이디 입니다.
+<%}%>
+이렇게 응답하면 문자열이 불편하다.
+
+Json 문자열을 사용하면 2가지의 불리언 타입으로 답변이 가능하다.
+{"isExist":true} or {"isExist":false}
+
+contentType="application/json"; 으로 컨텐트 타입을 바꿔서 사용하면 오브젝트로 응답된다. 
+따로 파싱할 필요가 없다.
+contentType="text/html" 은 파싱이 필요하다.
