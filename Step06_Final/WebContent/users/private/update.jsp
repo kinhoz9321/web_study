@@ -24,10 +24,10 @@
 <body>
 <script>
 	<%if(isSuccess){%>
-		alert("수정 했습니다.");
+		alert("수정 완료 되었습니다.");
 		location.href="info.jsp";
 	<%}else{%>
-		alert("수정 실패");
+		alert("수정 실패 되었습니다.");
 		location.href="updateform.jsp";
 	<%}%>
 </script>

@@ -13,17 +13,36 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/private/info.jsp</title>
+<jsp:include page="../../include/resource.jsp"></jsp:include>
 <style>
+	/*프로필 이미지를 작은 원형으로 만든다.*/
 	#profileImage{
-		width: 150px;
-		height: 150px;
+		width: 150px; /*크기*/
+		height: 150px; /*크기*/
+		border: 1px solid #cecece;
+		border-radius: 50% /*원형으로 만들기 정도*/
 	}
 </style>
 </head>
 <body>
+<jsp:include page="../../include/navbar.jsp"></jsp:include>
 <div class="container">
-	<h1>회원정보 상세 페이지</h1>
-	<table>
+	<nav>
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="${pageContext.request.contextPath}">Home</a>
+			</li>
+			<li class="breadcrumb-item">가입 정보 관리</li>
+		</ul>
+	</nav>
+</div>
+<div class="container">
+	<h2 class="text-center"><%=dto.getId() %> 님의 가입 정보</h2>
+	<table class="table">
+		<colgroup>
+			<col width="200" style="border:solid 1px lightgrey"/>
+			<col style="border:solid 1px lightgrey"/>
+		</colgroup>
 		<tr>
 			<th>프로필 이미지</th>
 			<td>
@@ -53,9 +72,18 @@
 			<td><%=dto.getRegdate() %></td>
 		</tr>
 	</table>
-	<button><a href="${pageContext.request.contextPath}/index.jsp">인덱스로 돌아가기</a></button>
-	<button><a href="updateform.jsp">개인 정보 수정</a></button>
-	<button><a href="delete.jsp">탈퇴</a></button>
+	<div class="text-center">
+		<button class="btn btn-success"><a href="updateform.jsp" style="color:white">가입 정보 수정</a></button>
+		<button class="btn btn-danger"><a href="javascript:deleteConfirm()" style="color:white">탈퇴</a></button>
+	</div>
+	<script>
+	function deleteConfirm(){
+		let isDelete=confirm("<%=id%> 회원님 탈퇴 하시겠습니까?");
+		if(isDelete){
+			location.href="${pageContext.request.contextPath}/users/private/delete.jsp";
+		}
+	}
+	</script>
 </div>
 </body>
 </html>

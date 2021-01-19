@@ -21,22 +21,31 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/signup.jsp</title>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 </head>
 <body>
-	<div class="container">
-		<h1>알림</h1>
-		<%if(isSuccess){ %>
-			<p>
-				<strong><%=id %></strong> 회원님 가입 되었습니다.
-				<a href="loginform.jsp">로그인 하러가기</a>
-			</p>
-		<%}else{ %>
-			<p>
-				회원 가입에 실패했습니다. <br />
-				<a href="signup_form.jsp">다시 가입</a>
-				<a href="${pageContext.request.contextPath}/index.jsp">인덱스로 돌아가기</a>
-			</p>
-		<%} %>
+<div class="container form-group">
+	<%if(isSuccess){ %>
+	<div class="text-center">
+		<h1><%=id %> 님 가입을 축하드립니다.</h1>
+		<button class="btn btn-success">
+			<a href="${pageContext.request.contextPath}/loginform.jsp" style="color:white">로그인 하러가기</a>
+		</button>
+		<button class="btn btn-warning">
+			<a href="${pageContext.request.contextPath}/index.jsp" style="color:white">홈페이지로 돌아가기</a>
+		</button>
 	</div>
+	<%}else{ %>
+	<div class="text-center">
+		<h1>가입에 실패 했습니다.</h1>
+		<button class="btn btn-success">
+			<a href="signup_form.jsp" style="color:white">다시 회원가입 하러가기</a>
+		</button>
+		<button class="btn btn-warning">
+			<a href="${pageContext.request.contextPath}/index.jsp" style="color:white">홈페이지로 돌아가기</a>
+		</button>
+	</div>
+	<%} %>
+</div>
 </body>
 </html>

@@ -22,19 +22,18 @@
 </head>
 <body>
 	<div class="container">
-		<h1>알림</h1>
 		<%if(isValid){ %>
 			<%-- 로그인 했다는 의미에서 session scope 에 "id" 라는 키 값으로 로그인된 아이디를 담는다. --%>
 			<%session.setAttribute("id", id); %>
-			<p>
-				<strong><%=id %></strong>님 로그인 되었습니다.
-				<a href="${pageContext.request.contextPath}/index.jsp">확인(인덱스로)</a>
-			</p>
+			<script>
+				alert("<%=id%>님 로그인 되었습니다.");
+				location.href="${pageContext.request.contextPath}/index.jsp"
+			</script>
 		<%}else{ %>
-			<p>
-				아이디 혹은 비밀번호가 틀립니다.
-				<a href="loginform.jsp">다시 시도</a>
-			</p>	
+			<script>
+				alert("아이디 혹은 비밀번호가 틀립니다.");
+				location.href="${pageContext.request.contextPath}/users/loginform.jsp"
+			</script>	
 		<%} %>
 	</div>
 </body>

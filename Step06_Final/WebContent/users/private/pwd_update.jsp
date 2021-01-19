@@ -25,21 +25,32 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/private/pwd_update.jsp</title>
+<jsp:include page="../../include/resource.jsp"></jsp:include>
 </head>
 <body>
 	<div class="container">
 		<%if(isSuccess){ //비밀번호 수정 성공이면
 			//다시 로그인 하도록 로그아웃 처리를 한다.
 			session.removeAttribute("id");%>
-			<p>
-				<strong><%=id %></strong>비밀번호를 수정했습니다.
-				<a href="${pageContext.request.contextPath}/users/loginform.jsp">다시 로그인 하기</a>
+			<div class="text-center">
+				<h2>
+					<strong><%=id %></strong> 님 비밀번호가 수정되었습니다.
+				</h2>
+				<button class="btn btn-success">
+					<a style="color:white" href="${pageContext.request.contextPath}/users/loginform.jsp">다시 로그인 하기</a>
+				</button>
+			</div>
 			</p>
 		<%}else{ %>
-			<p>
-				이전 비밀번호가 일치 하지 않습니다.
-				<a href="pwd_updateform.jsp">다시 시도</a>
-			</p>
+			<div class="text-center">
+				<h2>
+					<strong><%=id %></strong> 님 비밀번호 수정 실패 되었습니다. <br />
+					기존 비밀번호를 확인해주세요.
+				</h2>
+				<button class="btn btn-success">
+					<a style="color:white" href="pwd_updateform.jsp">다시 시도</a>
+				</button>
+			</div>
 		<%} %>
 	</div>
 </body>

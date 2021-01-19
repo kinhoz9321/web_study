@@ -58,14 +58,14 @@
 <title>/file/private/upload.jsp</title>
 </head>
 <body>
-	<%if(isSuccess){ %>
-		<p>
-			<%=writer %> 님이 업로드한 <%=orgFileName %> 파일을 저장했습니다.
-		</p>
-		<a href="${pageContext.request.contextPath}/file/list.jsp">목록보기</a>
-	<%}else{ %>
-		<p>업로드 실패</p>
-		<a href="upload_form.jsp">다시 시도</a>
-	<%} %>
+<script>
+	<%if(isSuccess){%>
+		alert("파일이 업로드 되었습니다.");
+		location.href="${pageContext.request.contextPath}/file/list.jsp";
+	<%}else{%>
+		alert("파일 업로드를 실패하였습니다.");
+		location.href="${pageContext.request.contextPath}/file/upload_form.jsp";
+	<%}%>
+</script>
 </body>
 </html>
