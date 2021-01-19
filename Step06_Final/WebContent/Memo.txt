@@ -12,7 +12,7 @@
 "${pageContext.request.contextPath}/" 최상위 경로 까지만 적어줘도 
 자동으로 index.jsp 페이지가 뿌려진다.
 
-2. Java 사용
+2. Java 문법 안에 html 사용
 <body>
 <%if(isSuccess){ %>
 	<p>회원 탈퇴가 완료 되었습니다.</p>
@@ -42,3 +42,37 @@ Json 문자열을 사용하면 2가지의 불리언 타입으로 답변이 가�
 contentType="application/json"; 으로 컨텐트 타입을 바꿔서 사용하면 오브젝트로 응답된다. 
 따로 파싱할 필요가 없다.
 contentType="text/html" 은 파싱이 필요하다.
+
+4.Javascript 이용
+<button>
+	<a href="javascript:deleteConfirm()">삭제</a>
+</button>
+<script>
+	function deleteConfirm(){
+		let isDelete=confirm("글을 삭제 하시겠습니까?");
+		if(isDelete){
+			location.href="${pageContext.request.contextPath}/cafe/private/delete.jsp?num=<%=dto.getNum()%>";
+		}
+	}
+</script>
+
+[Memo]
+javascript를 이용해  delete.jsp 페이지로 이동하게 한다.
+
+5. Java 문법 안에 Javascript 사용
+<body>
+	<%if(isSuccess){ %>
+		<script>
+			alert("삭제 했습니다.");
+			location.href="${pageContext.request.contextPath}/cafe/list.jsp"
+		</script>
+	<%}else{ %>
+		<script>
+			alert("삭제 실패");
+			location.href="${pageContext.request.contextPath}/cafe/detail.jsp?num=<%=num%>";
+		</script>
+	<%} %>
+</body>
+
+[Memo]
+Java 문법 안에 Javascript를 이용해 2가지의 조건에 따라 이동하는 경로를 다르게 분기한다.
