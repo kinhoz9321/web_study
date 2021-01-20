@@ -9,9 +9,18 @@
 <meta charset="UTF-8">
 <title>/index.jsp</title>
 <jsp:include page="include/resource.jsp"></jsp:include>
+<style>
+	#img{
+		padding-top:50px;
+		padding-bottom:50px;
+	}
+</style>
 </head>
 <body>
 <jsp:include page="include/navbar.jsp"></jsp:include>
+	<div class="container text-center" id="img">
+		<img src="${pageContext.request.contextPath}/images/tulip2.jpg" width="500px"/>
+	</div>
 	<div class="container">
 		<ul class="list-group">
 			<li class="list-group-item"><a href="cafe/list.jsp" style="color:black">게시판 목록 보기</a></li>
