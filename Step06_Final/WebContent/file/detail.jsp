@@ -50,14 +50,6 @@
 				<th>파일 다운로드</th>
 				<td><a href="download.jsp?num=<%=dto.getNum()%>"><%=dto.getOrgFileName() %></a></td>
 			</tr>
-			<tr>
-				<th>미리보기</th>
-				<td>
-					<div class="img-wrapper">
-						<img />
-					</div>
-				</td>
-			</tr>
 		</table>
 		<button class="btn btn-warning">
 			<a href="list.jsp" style="color:white">목록보기</a>
