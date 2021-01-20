@@ -123,6 +123,16 @@
 	<jsp:param value="gallery" name="thisPage"/>
 </jsp:include>
 	<div class="container">
+	<nav>
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="${pageContext.request.contextPath}">Home</a>
+			</li>
+			<li class="breadcrumb-item">갤러리 목록</li>
+		</ul>
+	</nav>
+	</div>
+	<div class="container">
 		<button class="btn btn-success">
 			<a style="color:white" href="private/upload_form.jsp">사진 업로드</a>
 		</button>
@@ -148,7 +158,7 @@
 		<ul class="pagination pagination justify-content-center">
 			<%if(startPageNum!=1){ %>
 				<li class="page-item">
-					<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
+					<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>&condition=<%=condition%>&keyword=<%=encodedK%>">Prev</a>
 				</li>
 			<%}else{ %>
 			<!-- 
@@ -162,18 +172,18 @@
 			<%for(int i=startPageNum; i<=endPageNum; i++){ %><!-- 반복문 돌면서 li가 총 5개 만들어짐 (s1-e5)-->
 				<%if(i==pageNum){ %><!-- i가 현재페이지 번호와 같으면 active가 들어가야 한다. -->
 					<li class="page-item active"><!-- class 자동 부트스트랩 효과 추가 -->
-						<a class="page-link" href="list.jsp?pageNum=<%=i %>"><%=i %></a>
+						<a class="page-link" href="list.jsp?pageNum=<%=i %>&condition=<%=condition%>&keyword=<%=encodedK%>"><%=i %></a>
 						<!-- i가 1이 찍혀있으면 pageNum도 1이 찍혀 있어야 한다. -->
 					</li>
 				<%}else{ %><!-- i가 현재페이지 번호와 같지 않으면 active가 안들어간다. -->
 					<li class="page-item"><!-- class 자동 부트스트랩 효과 추가 -->
-						<a class="page-link" href="list.jsp?pageNum=<%=i %>"><%=i %></a>
+						<a class="page-link" href="list.jsp?pageNum=<%=i %>&condition=<%=condition%>&keyword=<%=encodedK%>"><%=i %></a>
 					</li>
 				<%} %>
 			<%} %>
 			<%if(endPageNum < totalPageCount){ %>
 				<li class="page-item">
-					<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
+					<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>&condition=<%=condition%>&keyword=<%=encodedK%>">Next</a>
 				</li>
 			<%}else{ %>
 			<!-- 

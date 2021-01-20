@@ -1,10 +1,10 @@
-<%@page import="test.gallery.dao.GalleryDao"%>
-<%@page import="test.gallery.dto.GalleryDto"%>
+<%@page import="test.file.dao.FileDao"%>
+<%@page import="test.file.dto.FileDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	int num=Integer.parseInt(request.getParameter("num"));
-	GalleryDto dto=GalleryDao.getInstance().getData(num);
+	FileDto dto=FileDao.getInstance().getData(num);
 	
 	String id=(String)session.getAttribute("id");
 %>
@@ -12,12 +12,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/gallery/detail.jsp</title>
+<title>/file/detail.jsp</title>
 <jsp:include page="../include/resource.jsp"></jsp:include>
 </head>
 <body>
 <jsp:include page="../include/navbar.jsp">
-	<jsp:param value="gallery" name="thisPage"/>
+	<jsp:param value="file" name="thisPage"/>
 </jsp:include>
 	<div class="container">
 	<nav>
@@ -26,13 +26,13 @@
 				<a href="${pageContext.request.contextPath}">Home</a>
 			</li>
 			<li class="breadcrumb-item">
-				<a href="${pageContext.request.contextPath}/gallery/list.jsp">갤러리 목록</a>
+				<a href="${pageContext.request.contextPath}/file/list.jsp">자료실 목록</a>
 			</li>
-			<li class="breadcrumb-item">갤러리 상세보기</li>
+			<li class="breadcrumb-item">파일 상세보기</li>
 		</ul>
 	</nav>
 	</div>
-	<div class="container form-group">
+	<div class="container">
 		<table class="table table-bordered">
 			<tr>
 				<th>날짜</th>
@@ -43,15 +43,19 @@
 				<td><%=dto.getWriter() %></td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<td>
-					<div><%=dto.getCaption() %></div>
-				</td>
+				<th>제목(파일 설명)</th>
+				<td><%=dto.getTitle() %></td>
 			</tr>
 			<tr>
-				<th>이미지</th>
+				<th>파일 다운로드</th>
+				<td><a href="download.jsp?num=<%=dto.getNum()%>"><%=dto.getOrgFileName() %></a></td>
+			</tr>
+			<tr>
+				<th>미리보기</th>
 				<td>
-					<img src="${pageContext.request.contextPath}<%=dto.getImagePath() %>" />
+					<div class="img-wrapper">
+						<img />
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -74,11 +78,12 @@
 	</div>
 	<script>
 		function deleteConfirm(){
-			let isDelete=confirm("사진을 삭제 하시겠습니까?");
+			let isDelete=confirm("글을 삭제 하시겠습니까?");
 			if(isDelete){
 				location.href="private/delete.jsp?num=<%=dto.getNum()%>";
 			}
 		}
 	</script>
+	</div>
 </body>
 </html>

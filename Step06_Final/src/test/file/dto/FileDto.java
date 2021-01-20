@@ -22,7 +22,6 @@ public class FileDto {
 	//디폴트 생성자
 	public FileDto() {}
 
-	//생성자
 	public FileDto(int num, String writer, String title, String orgFileName, String saveFileName, long fileSize,
 			String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
@@ -39,7 +38,6 @@ public class FileDto {
 		this.nextNum = nextNum;
 	}
 
-	//getter setter
 	public int getNum() {
 		return num;
 	}

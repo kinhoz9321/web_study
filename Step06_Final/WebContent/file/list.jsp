@@ -125,7 +125,6 @@
 					<th>파일명</th>
 					<th>크기</th>
 					<th>등록일</th>
-					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -133,15 +132,10 @@
 				<tr>
 					<td><%=tmp.getNum() %></td>
 					<td><%=tmp.getWriter() %></td>
-					<td><%=tmp.getTitle() %></td>
-					<td><a href="download.jsp?num=<%=tmp.getNum()%>"><%=tmp.getOrgFileName() %></a></td>
+					<td><a href="${pageContext.request.contextPath}/file/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></a></td>
+					<td><%=tmp.getOrgFileName() %></td>
 					<td><%=tmp.getFileSize() %></td>
 					<td><%=tmp.getRegdate() %></td>
-					<td>
-					<%if(tmp.getWriter().equals(id)){ %>
-						<a href="javascript:deleteConfirm(<%=tmp.getNum()%>)">삭제</a>
-					<%} %>
-					</td>
 				</tr>
 			<%} %>
 			</tbody>

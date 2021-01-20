@@ -488,9 +488,14 @@ public class CafeDao {
 		try {
 			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
 			//select 문 작성
-			String sql = "SELECT writer, title, content, viewCount, regdate"
-					+ " FROM board_cafe"
-					+ " WHERE num=?";
+			String sql = "SELECT *" + 
+					"	FROM" + 
+					"		(SELECT num, writer, title, content, viewCount, regdate," + 
+					"		LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum," + 
+					"		LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum" + 
+					"		FROM board_cafe" + 
+					"		ORDER BY num DESC)" + 
+					"	WHERE num=?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
 			pstmt.setInt(1, num);
@@ -509,6 +514,8 @@ public class CafeDao {
 				dto.setContent(rs.getString("content"));
 				dto.setViewCount(rs.getInt("viewCount"));
 				dto.setRegdate(rs.getString("regdate"));
+				dto.setPrevNum(rs.getInt("prevNum"));
+				dto.setNextNum(rs.getInt("nextNum"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

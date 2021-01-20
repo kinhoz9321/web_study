@@ -292,9 +292,14 @@ public class FileDao {
 		try {
 			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
 			//select 문 작성
-			String sql = "SELECT writer, title, orgFileName, saveFileName, fileSize, regdate"
-					+ " FROM board_file"
-					+ " WHERE num=?";
+			String sql = "SELECT *" + 
+					"	FROM" + 
+					"		(SELECT num, writer, title, orgFileName, saveFileName, fileSize, regdate," + 
+					"		LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum," + 
+					"		LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum" + 
+					"		FROM board_file" + 
+					"		ORDER BY num DESC)" + 
+					"	WHERE num=?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
 			pstmt.setInt(1, num);
@@ -307,12 +312,15 @@ public class FileDao {
 			 */
 			if (rs.next()) {
 				dto=new FileDto();
+				dto.setNum(num);
 				dto.setWriter(rs.getString("writer"));
 				dto.setTitle(rs.getString("title"));
 				dto.setOrgFileName(rs.getString("orgFileName"));
 				dto.setSaveFileName(rs.getString("saveFileName"));
 				dto.setFileSize(rs.getLong("fileSize"));
 				dto.setRegdate(rs.getString("regdate"));
+				dto.setPrevNum(rs.getInt("prevNum"));
+				dto.setNextNum(rs.getInt("nextNum"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

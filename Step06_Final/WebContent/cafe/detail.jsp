@@ -73,15 +73,21 @@
 		<button type="button" class="btn btn-warning">
 			<a href="list.jsp" style="color:white">목록보기</a>
 		</button>
+		<%if(dto.getWriter().equals(id)){ %>
+		<button type="button" class="btn btn-success">
+			<a href="${pageContext.request.contextPath}/cafe/private/updateform.jsp?num=<%=dto.getNum() %>" style="color:white">수정</a>
+		</button>
+		<button type="button" class="btn btn-danger">
+			<a href="javascript:deleteConfirm()" style="color:white">삭제</a>
+		</button>
+		<%} %>
 		<div class="text-center">
-			<%if(dto.getWriter().equals(id)){ %>
-			<button type="button" class="btn btn-success">
-				<a href="${pageContext.request.contextPath}/cafe/private/updateform.jsp?num=<%=dto.getNum() %>" style="color:white">수정</a>
+			<button class="btn btn-light">
+				<a style="color:black" href="detail.jsp?num=<%=dto.getPrevNum()%>">◁ prev</a>
 			</button>
-			<button type="button" class="btn btn-danger">
-				<a href="javascript:deleteConfirm()" style="color:white">삭제</a>
+			<button class="btn btn-light">
+				<a style="color:orange" href="detail.jsp?num=<%=dto.getNextNum()%>">next ▷</a>
 			</button>
-			<%} %>
 		</div>
 	</div>
 	<script>

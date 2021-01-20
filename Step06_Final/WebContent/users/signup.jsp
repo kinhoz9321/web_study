@@ -29,7 +29,7 @@
 	<div class="text-center">
 		<h1><%=id %> 님 가입을 축하드립니다.</h1>
 		<button class="btn btn-success">
-			<a href="${pageContext.request.contextPath}/loginform.jsp" style="color:white">로그인 하러가기</a>
+			<a href="${pageContext.request.contextPath}/users/loginform.jsp" style="color:white">로그인 하러가기</a>
 		</button>
 		<button class="btn btn-warning">
 			<a href="${pageContext.request.contextPath}/index.jsp" style="color:white">홈페이지로 돌아가기</a>
