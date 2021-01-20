@@ -65,7 +65,7 @@
 			</div>
 			<div class="form-group">
 				<label for="pwd">비밀번호</label>
-				<input class="form-control" type="password" name="pwd" id="pwd" value="<%=savedPwd%>" required/>
+				<input class="form-control" type="password" name="pwd" id="pwd" value="<%=savedPwd%>" class="sr-only" required/>
 			</div>
 			<div class="text-center">
 				<div class="checkbox mb-3">
